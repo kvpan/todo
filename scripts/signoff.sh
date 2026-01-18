@@ -33,6 +33,6 @@ gh api \
     /repos/$OWNER/$REPO/statuses/$SHA \
     -f "context=signoff" \
     -f "state=success" \
-    -f "description=Signed off by $USER ($SECONDS seconds)"
+    -f "description=Signed off by $USER"
 
 green "✅ Signed off on $SHA in $SECONDS seconds"
