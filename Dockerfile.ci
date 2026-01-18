@@ -10,5 +10,5 @@ RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
 WORKDIR /app
 
-# Source files come from volume mount at runtime (see docker-compose.ci.yml)
-# This allows faster iteration without rebuilding the image
+# Source files are copied into the image for isolation
+COPY . .
