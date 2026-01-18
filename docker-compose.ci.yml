@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+    db:
+        image: postgres:16-alpine
+        environment:
+            POSTGRES_USER: ci
+            POSTGRES_PASSWORD: ci
+            POSTGRES_DB: ci
+        tmpfs:
+            - /var/lib/postgresql/data # In-memory for speed
+
+    ci:
+        build:
+            context: .
+            dockerfile: Dockerfile.ci
+        depends_on:
+            - db
+        environment:
+            DATABASE_URL: postgresql://ci:ci@db:5432/ci
+            PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+        volumes:
+            - .:/app:ro # Mount source code read-only
+            - ci_node_modules:/app/node_modules # Writable node_modules
+            - ci_pnpm_store:/root/.local/share/pnpm/store # Writable pnpm store
+        command: |
+            sh -c "
+              mkdir -p /root/.cache &&
+              ln -sf /ms-playwright /root/.cache/ms-playwright &&
+              pnpm install --frozen-lockfile &&
+              pnpm lint &&
+              pnpm build &&
+              pnpm db:migrate &&
+              pnpm test
+            "
+
+volumes:
+    ci_node_modules:
+    ci_pnpm_store:

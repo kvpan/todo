@@ -1,0 +1,24 @@
+{
+    "name": "todo-mvc",
+    "type": "module",
+    "private": true,
+    "packageManager": "pnpm@9.15.0",
+    "scripts": {
+        "signoff": "bash scripts/signoff.sh",
+        "dev": "turbo dev",
+        "build": "turbo build",
+        "test": "turbo test",
+        "lint": "turbo lint",
+        "db:up": "docker-compose up -d",
+        "db:down": "docker-compose down",
+        "db:init": "docker-compose up -d && sleep 2 && pnpm db:migrate && pnpm db:generate",
+        "db:drop": "docker-compose down -v",
+        "db:reset": "pnpm db:drop && pnpm db:init",
+        "db:migrate": "cd apps/api && npx prisma migrate dev",
+        "db:generate": "cd apps/api && npx prisma generate"
+    },
+    "devDependencies": {
+        "msw": "^2.12.7",
+        "turbo": "^2.4.0"
+    }
+}

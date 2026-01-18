@@ -1,0 +1,19 @@
+# Dependencies - reinstalled fresh in container
+node_modules
+**/node_modules
+
+# Build outputs
+dist
+**/dist
+.turbo
+**/.turbo
+
+# Local development files
+.git
+.env
+.env.local
+*.log
+
+# IDE
+.vscode
+.idea

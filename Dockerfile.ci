@@ -1,0 +1,14 @@
+# CI container for local signoff
+# Uses Playwright base image for browser testing
+
+FROM mcr.microsoft.com/playwright:v1.57.0-noble
+
+# Browsers are installed at /ms-playwright in the base image
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Source files come from volume mount at runtime (see docker-compose.ci.yml)
+# This allows faster iteration without rebuilding the image
