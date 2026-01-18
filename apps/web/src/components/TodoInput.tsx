@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 interface TodoInputProps {
     onAdd: (title: string) => void;
@@ -15,12 +16,12 @@ export function TodoInput({ onAdd }: TodoInputProps) {
     };
 
     return (
-        <input
-            className="todo-input"
+        <Input
             placeholder="What needs to be done?"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={handleKeyDown}
+            className="text-lg"
         />
     );
 }

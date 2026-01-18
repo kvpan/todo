@@ -9,11 +9,15 @@ interface TodoListProps {
 
 export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
     if (todos.length === 0) {
-        return null;
+        return (
+            <div className="text-center text-sm text-muted-foreground py-6">
+                No todos yet. Add one above!
+            </div>
+        );
     }
 
     return (
-        <ul className="todo-list">
+        <ul className="space-y-2">
             {todos.map((todo) => (
                 <TodoItem key={todo.id} todo={todo} onToggle={onToggle} onDelete={onDelete} />
             ))}

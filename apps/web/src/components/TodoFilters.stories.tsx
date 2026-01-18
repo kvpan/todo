@@ -34,7 +34,7 @@ export const AllSelected: Story = {
 
         // Verify "All" button has active class
         const allButton = canvas.getByRole("button", { name: "All" });
-        expect(allButton).toHaveClass("active");
+        expect(allButton).toHaveAttribute("aria-pressed", "true");
 
         // Verify count is displayed
         expect(canvas.getByText("5 items left")).toBeInTheDocument();
@@ -58,7 +58,7 @@ export const CompletedSelected: Story = {
 
         // Verify "Completed" button has active class
         const completedButton = canvas.getByRole("button", { name: "Completed" });
-        expect(completedButton).toHaveClass("active");
+        expect(completedButton).toHaveAttribute("aria-pressed", "true");
 
         // Verify count shows 0
         expect(canvas.getByText("0 items left")).toBeInTheDocument();

@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export type FilterType = "all" | "active" | "completed";
 
 interface TodoFiltersProps {
@@ -8,27 +10,33 @@ interface TodoFiltersProps {
 
 export function TodoFilters({ filter, onFilterChange, activeCount }: TodoFiltersProps) {
     return (
-        <div className="todo-filters">
-            <span>{activeCount} items left</span>
-            <div className="filter-buttons">
-                <button
-                    className={`filter-btn ${filter === "all" ? "active" : ""}`}
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <span className="text-sm text-muted-foreground">{activeCount} items left</span>
+            <div className="flex gap-2">
+                <Button
+                    variant={filter === "all" ? "default" : "outline"}
+                    size="sm"
                     onClick={() => onFilterChange("all")}
+                    aria-pressed={filter === "all"}
                 >
                     All
-                </button>
-                <button
-                    className={`filter-btn ${filter === "active" ? "active" : ""}`}
+                </Button>
+                <Button
+                    variant={filter === "active" ? "default" : "outline"}
+                    size="sm"
                     onClick={() => onFilterChange("active")}
+                    aria-pressed={filter === "active"}
                 >
                     Active
-                </button>
-                <button
-                    className={`filter-btn ${filter === "completed" ? "active" : ""}`}
+                </Button>
+                <Button
+                    variant={filter === "completed" ? "default" : "outline"}
+                    size="sm"
                     onClick={() => onFilterChange("completed")}
+                    aria-pressed={filter === "completed"}
                 >
                     Completed
-                </button>
+                </Button>
             </div>
         </div>
     );

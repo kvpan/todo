@@ -156,7 +156,7 @@ export const DeleteTodo: Story = {
         });
 
         // Click the delete button
-        const deleteButton = canvas.getByRole("button", { name: "×" });
+        const deleteButton = canvas.getByRole("button", { name: "Delete" });
         await userEvent.click(deleteButton);
 
         // Verify the todo is removed

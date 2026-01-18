@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { TodoInput } from "./components/TodoInput";
 import { TodoList } from "./components/TodoList";
 import { TodoFilters, FilterType } from "./components/TodoFilters";
-import "./App.css";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export interface Todo {
     id: string;
@@ -84,13 +84,21 @@ function App() {
     const activeCount = todos.filter((t) => !t.completed).length;
 
     return (
-        <div className="todo-app">
-            <h1>todos</h1>
-            <div className="todo-container">
-                <TodoInput onAdd={addTodo} />
-                <TodoList todos={filteredTodos} onToggle={toggleTodo} onDelete={deleteTodo} />
-                <TodoFilters filter={filter} onFilterChange={setFilter} activeCount={activeCount} />
-            </div>
+        <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
+            <Card className="w-full max-w-lg">
+                <CardHeader>
+                    <CardTitle className="text-center text-3xl font-bold">todos</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <TodoInput onAdd={addTodo} />
+                    <TodoList todos={filteredTodos} onToggle={toggleTodo} onDelete={deleteTodo} />
+                    <TodoFilters
+                        filter={filter}
+                        onFilterChange={setFilter}
+                        activeCount={activeCount}
+                    />
+                </CardContent>
+            </Card>
         </div>
     );
 }

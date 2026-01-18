@@ -50,7 +50,7 @@ export const Completed: Story = {
 
         // Verify checkbox is checked
         const checkbox = canvas.getByRole("checkbox");
-        expect(checkbox).toBeChecked();
+        expect(checkbox).toHaveAttribute("aria-checked", "true");
 
         // Verify text has completed styling (strikethrough)
         const title = canvas.getByText("Setup Storybook");
@@ -88,7 +88,7 @@ export const DeleteInteraction: Story = {
     },
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement);
-        const deleteButton = canvas.getByRole("button", { name: "×" });
+        const deleteButton = canvas.getByRole("button", { name: "Delete" });
 
         // Click delete button
         await userEvent.click(deleteButton);
